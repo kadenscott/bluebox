@@ -1,12 +1,12 @@
 import express from 'express'
 import multer from 'multer'
-import {DATA_DIR, PUBLIC_DIR} from "./util"
+import {DATA_DIR, isProduction, PUBLIC_DIR} from "./util"
 import db from './db'
 import {generateName} from "./name";
 import mime from 'mime-types'
 import * as fs from "fs";
 
-if (process.env.PRODUCTION === "true") {
+if (isProduction()) {
     console.log("Running in production mode")
 } else {
     console.log("Running in development mode")
@@ -34,7 +34,7 @@ const storage = multer.diskStorage({
 const upload = multer({storage: storage})
 
 const app = express()
-const PORT = 8080;
+const PORT = isProduction() ? 80 : 8080;
 
 app.post("/upload", upload.single('file'), (req, res, next) => {
     if (req.body.auth === undefined || req.body.auth !== process.env.AUTH_KEY) {
