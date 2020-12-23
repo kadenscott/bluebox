@@ -1,1 +1,1 @@
-export const DATA_DIR = "/home/kscott/projects/bluebox/app/data"
+export const DATA_DIR = process.env.PRODUCTION !== undefined ? "/app/data" : "/home/kscott/projects/bluebox/app/data"
