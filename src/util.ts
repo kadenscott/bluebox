@@ -1,0 +1,1 @@
+export const DATA_DIR = "/home/kscott/projects/bluebox/app/data"

@@ -6,3 +6,4 @@ RUN npm install\
 COPY . .
 RUN tsc
 CMD ["node", "./build/app.js"]
+EXPOSE 80

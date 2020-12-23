@@ -1,0 +1,22 @@
+version: "3"
+networks:
+  api_server_default:
+    driver: bridge
+services:
+  bluebox:
+    networks:
+      - api_server_default
+    volumes:
+      - "bluebox_data:/app/data"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+volumes:
+  bluebox_data:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /opt/bluebox
