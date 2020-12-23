@@ -11,23 +11,28 @@ const numeric: string[] = '1234567890'.split('')
 
 const alphanumeric: string[] = 'ACDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890'.split('')
 
-const nameTypes: { [nameType: string]: string[]} = {
-    "emoji": emojis,
-    "alpha": alpha,
-    "numeric": numeric,
-    "alphanumeric": alphanumeric
-}
+const kaomoji: string[] = [
+    '( ꒪⌓꒪)'
+]
+
+const nameTypes: string[][] = [
+    emojis,
+    alpha,
+    numeric,
+    alphanumeric,
+    kaomoji
+]
 
 export const generateName = async (): Promise<string> => {
     return new Promise((res, rej) => {
-        const nameType = Object.keys(nameTypes)[Math.floor(Math.random() * Object.keys(nameTypes).length)]
+        const chars = nameTypes[Math.floor(Math.random() * nameTypes.length)]
 
         const charCount = Math.floor(Math.random() * 10)
 
         let name = ""
 
         for (let i = 0; i < charCount; i++) {
-            name += nameTypes[nameType][Math.floor(Math.random() * nameType.length)]
+            name += chars[Math.floor(Math.random() * chars.length)]
         }
 
         db.get("SELECT * FROM image WHERE filename = ?", [name], async (err, row) => {
