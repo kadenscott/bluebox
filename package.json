@@ -15,6 +15,7 @@
     "@types/mime-types": "^2.1.0",
     "@types/multer": "^1.4.5",
     "@types/sqlite3": "^3.1.6",
+    "directory-tree": "^2.2.5",
     "express": "^4.17.1",
     "mime-types": "^2.1.27",
     "multer": "^1.4.2",

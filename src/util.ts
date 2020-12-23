@@ -1,1 +1,2 @@
 export const DATA_DIR = process.env.PRODUCTION !== undefined ? "/app/data" : "/home/kscott/projects/bluebox/app/data"
+export const PUBLIC_DIR = process.env.PRODUCTION !== undefined ? "/app/public" : "/home/kscott/projects/bluebox/app/public"

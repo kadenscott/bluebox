@@ -1,18 +1,18 @@
 version: "3"
-networks:
-  api_server_default:
-    driver: bridge
+#networks:
+#  api_server_default:
+#    driver: host
 services:
   bluebox:
-    networks:
-      - api_server_default
+    network_mode: host
     volumes:
       - "bluebox_data:/app/data"
+    environment:
+      PRODUCTION: "true"
+      AUTH_KEY: "alyssa_is_cutie_3"
     build:
       context: .
       dockerfile: Dockerfile
-    ports:
-      - 8080:80
 volumes:
   bluebox_data:
     driver: local

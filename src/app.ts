@@ -1,13 +1,18 @@
 import express from 'express'
 import multer from 'multer'
-import {DATA_DIR} from "./util"
+import {DATA_DIR, PUBLIC_DIR} from "./util"
 import db from './db'
 import {generateName} from "./name";
 import mime from 'mime-types'
+import * as fs from "fs";
+
+if (!fs.existsSync(DATA_DIR+"/images/images")) {
+    fs.mkdirSync(DATA_DIR+"/images/images")
+}
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, DATA_DIR+"/images");
+        cb(null, DATA_DIR+"/images/images");
     },
     filename(req: express.Request, file: Express.Multer.File, callback: (error: (Error | null), filename: string) => void) {
         let extension = mime.extension(file.mimetype)
@@ -24,7 +29,7 @@ const PORT = 8080;
 app.post("/upload", upload.single('file'), (req, res, next) => {
     if (req.body.auth === undefined || req.body.auth !== process.env.AUTH_KEY) {
         res.status(400).json({
-            "err": "invalid authentication key"
+            "error": "invalid authentication key"
         })
         return
     }
@@ -68,15 +73,20 @@ app.get("/:filename", (req, res) => {
             return
         }
 
+        if (row === undefined) {
+            res.json({"error": "no file found"})
+            return
+        }
+
         let filename = row.filename
 
         res.type("image/png")
-        res.sendFile(DATA_DIR+"/images/"+filename)
+        res.sendFile(DATA_DIR+"/images/images/"+filename)
     })
 })
 
 app.get("/", (req, res) => {
-    res.sendFile(DATA_DIR+"/avatar.png")
+    res.sendFile(PUBLIC_DIR+"/avatar.png")
 })
 
 app.listen(PORT, () => {
