@@ -4,7 +4,6 @@ import {DATA_DIR} from "./util"
 import db from './db'
 import {generateName} from "./name";
 import mime from 'mime-types'
-import {verbose} from "sqlite3";
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -74,6 +73,10 @@ app.get("/:filename", (req, res) => {
         res.type("image/png")
         res.sendFile(DATA_DIR+"/images/"+filename)
     })
+})
+
+app.get("/", (req, res) => {
+    res.sendFile(DATA_DIR+"/avatar.png")
 })
 
 app.listen(PORT, () => {

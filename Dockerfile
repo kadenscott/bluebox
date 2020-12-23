@@ -1,5 +1,5 @@
 FROM node:alpine
-WORKDIR /app/data
+WORKDIR /app
 COPY package.json .
 RUN npm install\
     && npm install typescript -g
