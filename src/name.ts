@@ -12,7 +12,16 @@ const numeric: string[] = '1234567890'.split('')
 const alphanumeric: string[] = 'ACDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890'.split('')
 
 const kaomoji: string[] = [
-    '( ꒪⌓꒪)'
+    '(꒪⌓꒪)',
+    'Ò,ó',
+    'ó‿ó',
+    'ô⌐ô',
+    'ôヮô',
+    'ŎםŎ',
+    'ŏﺡó',
+    'ʕ•̫͡•ʔ',
+    'ʕ•ᴥ•ʔ',
+    'ʘ‿ʘ'
 ]
 
 const nameTypes: string[][] = [
