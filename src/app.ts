@@ -8,6 +8,8 @@ import * as fs from "fs";
 
 if (process.env.PRODUCTION === "true") {
     console.log("Running in production mode")
+} else {
+    console.log("Running in development mode")
 }
 
 if (!fs.existsSync(DATA_DIR+"/images")) {
