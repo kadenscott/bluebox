@@ -6,6 +6,10 @@ import {generateName} from "./name";
 import mime from 'mime-types'
 import * as fs from "fs";
 
+if (!fs.existsSync(DATA_DIR+"/images")) {
+    fs.mkdirSync(DATA_DIR+"/images")
+}
+
 if (!fs.existsSync(DATA_DIR+"/images/images")) {
     fs.mkdirSync(DATA_DIR+"/images/images")
 }
