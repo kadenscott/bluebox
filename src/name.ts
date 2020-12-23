@@ -36,7 +36,11 @@ export const generateName = async (): Promise<string> => {
     return new Promise((res, rej) => {
         const chars = nameTypes[Math.floor(Math.random() * nameTypes.length)]
 
-        const charCount = Math.floor(Math.random() * 10)
+        let charCount = Math.floor(Math.random() * 10) + 3
+
+        if (chars === kaomoji) {
+            charCount = Math.floor(Math.random() * 2) + 1
+        }
 
         let name = ""
 
